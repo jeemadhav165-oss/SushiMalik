@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emergency Period Care Center 💗</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Nunito',sans-serif;
+      overflow-x:hidden;
+      background:linear-gradient(135deg,#fff0f5,#f6e6ff,#fff5eb);
+      min-height:100vh;
+      color:#5c3b4b;
+    }
+
+    .floating{
+      position:fixed;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      z-index:-1;
+    }
+
+    .floating span{
+      position:absolute;
+      bottom:-100px;
+      animation:float 10s linear infinite;
+      font-size:24px;
+      opacity:.7;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0) rotate(0deg);
+      }
+      100%{
+        transform:translateY(-120vh) rotate(360deg);
+      }
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-family:'Pacifico',cursive;
+      font-size:4rem;
+      background:linear-gradient(90deg,#ff4f8b,#c77dff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      max-width:700px;
+      font-size:1.2rem;
+      line-height:1.8;
+      background:rgba(255,255,255,.4);
+      padding:20px;
+      border-radius:20px;
+      backdrop-filter:blur(10px);
+    }
+
+    .btn{
+      margin-top:30px;
+      padding:16px 35px;
+      border:none;
+      border-radius:50px;
+      background:linear-gradient(90deg,#ff6b9d,#c77dff);
+      color:white;
+      font-size:1.1rem;
+      font-weight:900;
+      cursor:pointer;
+      transition:.3s;
+      box-shadow:0 10px 30px rgba(255,105,180,.3);
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+    }
+
+    section{
+      padding:80px 20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    h2{
+      text-align:center;
+      font-size:3rem;
+      margin-bottom:20px;
+      font-family:'Pacifico',cursive;
+      color:#ff5d9e;
+    }
+
+    .subtitle{
+      text-align:center;
+      color:#9c7b88;
+      margin-bottom:40px;
+    }
+
+    .moods{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:15px;
+    }
+
+    .mood{
+      padding:15px 25px;
+      border-radius:50px;
+      background:rgba(255,255,255,.5);
+      cursor:pointer;
+      transition:.3s;
+      font-weight:700;
+    }
+
+    .mood:hover{
+      transform:scale(1.1);
+      background:#ffd6e7;
+    }
+
+    #moodResponse{
+      margin-top:30px;
+      text-align:center;
+      font-size:1.1rem;
+      background:rgba(255,255,255,.5);
+      padding:25px;
+      border-radius:20px;
+      display:none;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.45);
+      padding:30px 20px;
+      border-radius:25px;
+      text-align:center;
+      backdrop-filter:blur(10px);
+      transition:.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) scale(1.03);
+    }
+
+    .card .emoji{
+      font-size:3rem;
+      margin-bottom:15px;
+    }
+
+    .love-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .love-card{
+      background:rgba(255,255,255,.45);
+      padding:25px;
+      border-radius:25px;
+      text-align:center;
+      font-size:1.1rem;
+      transition:.3s;
+    }
+
+    .love-card:hover{
+      transform:rotate(-2deg) scale(1.05);
+    }
+
+    .game{
+      text-align:center;
+    }
+
+    .heart-btn{
+      font-size:4rem;
+      cursor:pointer;
+      transition:.2s;
+      user-select:none;
+    }
+
+    .heart-btn:hover{
+      transform:scale(1.2);
+    }
+
+    .progress{
+      width:100%;
+      max-width:500px;
+      margin:20px auto;
+      background:#fff;
+      border-radius:50px;
+      overflow:hidden;
+      height:25px;
+    }
+
+    .progress-bar{
+      width:0%;
+      height:100%;
+      background:linear-gradient(90deg,#ff6b9d,#c77dff);
+      transition:.3s;
+    }
+
+    .playlist{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
+
+    .song{
+      background:rgba(255,255,255,.45);
+      padding:18px;
+      border-radius:18px;
+    }
+
+    .countdown{
+      text-align:center;
+      font-size:3rem;
+      font-weight:900;
+      color:#ff5d9e;
+    }
+
+    .letter{
+      background:rgba(255,255,255,.45);
+      padding:40px;
+      border-radius:30px;
+      text-align:center;
+      line-height:2;
+      font-size:1.2rem;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px;
+      color:#9b7d89;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:2.7rem;
+      }
+
+      h2{
+        font-size:2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="floating" id="floating"></div>
+
+<section class="hero">
+  <h1>Emergency Period Care Center 💗</h1>
+
+  <p>
+    Side effects may include mood swings, stealing hoodies,
+    demanding snacks at 2 AM, and randomly saying
+    “I’m fine” while clearly not fine 😭
+  </p>
+
+  <button class="btn" onclick="sendHug()">
+    Send Unlimited Hugs 🤗
+  </button>
+
+  <h3 id="hugText" style="margin-top:20px;color:#ff5d9e;"></h3>
+</section>
+
+<section>
+  <h2>Mood Detector 📊</h2>
+  <p class="subtitle">Select current emotional damage level</p>
+
+  <div class="moods">
+    <div class="mood" onclick="showMood('angry')">😤 Angry</div>
+    <div class="mood" onclick="showMood('cry')">😭 Crying</div>
+    <div class="mood" onclick="showMood('chocolate')">🍫 Needs Chocolate</div>
+    <div class="mood" onclick="showMood('attention')">🥺 Wants Attention</div>
+    <div class="mood" onclick="showMood('fight')">⚔️ Will Fight Anyone</div>
+  </div>
+
+  <div id="moodResponse"></div>
+</section>
+
+<section>
+  <h2>Survival Kit 🎁</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">🍫</div>
+      <h3>Chocolate</h3>
+      <p>The official medicine of period week.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🔥</div>
+      <h3>Heating Pad</h3>
+      <p>Warm cozy happiness machine.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🍦</div>
+      <h3>Ice Cream</h3>
+      <p>Calories don’t exist this week.</p>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🤗</div>
+      <h3>Cuddles</h3>
+      <p>Unlimited subscription activated.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Things I Love About You 💖</h2>
+
+  <div class="love-grid">
+    <div class="love-card">Even your angry texts are cute.</div>
+    <div class="love-card">You deserve the world and unlimited snacks.</div>
+    <div class="love-card">You are stronger than your cramps.</div>
+    <div class="love-card">I’d still choose you during mood swings.</div>
+    <div class="love-card">You make every day brighter.</div>
+    <div class="love-card">You're beautiful even when you don't feel it.</div>
+  </div>
+</section>
+
+<section class="game">
+  <h2>Happiness Meter 🎮</h2>
+
+  <div class="heart-btn" onclick="increaseLove()">💗</div>
+
+  <div class="progress">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+
+  <p id="lovePercent">0% Happiness</p>
+</section>
+
+<section>
+  <h2>Comfort Playlist 🎵</h2>
+
+  <div class="playlist">
+    <div class="song">🌅 Golden Hour — JVKE</div>
+    <div class="song">💌 Until I Found You — Stephen Sanchez</div>
+    <div class="song">💚 Lover — Taylor Swift</div>
+    <div class="song">☁️ Comfortable — H.E.R.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Snack Countdown ⏰</h2>
+  <div class="countdown" id="countdown">00:15:00</div>
+</section>
+
+<section>
+  <h2>A Letter For You 💌</h2>
+
+  <div class="letter">
+    I know periods can be exhausting and painful sometimes,
+    but I just want you to know I’m always here for you —
+    for the cramps, mood swings, random cravings,
+    and everything in between. 💗
+    <br><br>
+    You deserve comfort, rest, love,
+    and all the chocolates in the world.
+    <br><br>
+    — Your favorite human 🌸
+  </div>
+</section>
+
+<footer>
+  Made with 💗 by boyfriend developer energy
+</footer>
+
+<script>
+  const floating = document.getElementById("floating");
+
+  const emojis = ["💗","✨","🌸","💕","⭐","🎀"];
+
+  for(let i=0;i<30;i++){
+    const span=document.createElement("span");
+    span.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    span.style.left=Math.random()*100+"%";
+    span.style.animationDuration=(5+Math.random()*10)+"s";
+    span.style.fontSize=(20+Math.random()*20)+"px";
+    floating.appendChild(span);
+  }
+
+  let hugs=0;
+
+  function sendHug(){
+    hugs++;
+    document.getElementById("hugText").innerText=
+      "Hugs sent: "+hugs+" 💕";
+  }
+
+  function showMood(type){
+    const box=document.getElementById("moodResponse");
+
+    const messages={
+      angry:"Everything is annoying right now and that's valid 😤",
+      cry:"Come here babe, unlimited shoulder available 😭",
+      chocolate:"Deploying emergency chocolate immediately 🍫",
+      attention:"You now have 100% of my attention 🥺",
+      fight:"Give me names. We ride at dawn ⚔️"
+    };
+
+    box.style.display="block";
+    box.innerText=messages[type];
+  }
+
+  let happiness=0;
+
+  function increaseLove(){
+    happiness+=10;
+
+    if(happiness>100){
+      happiness=100;
+    }
+
+    document.getElementById("bar").style.width=happiness+"%";
+    document.getElementById("lovePercent").innerText=
+      happiness+"% Happiness 💖";
+  }
+
+  let time=900;
+
+  setInterval(()=>{
+    let minutes=Math.floor(time/60);
+    let seconds=time%60;
+
+    seconds=seconds<10?"0"+seconds:seconds;
+    minutes=minutes<10?"0"+minutes:minutes;
+
+    document.getElementById("countdown").innerText=
+      "00:"+minutes+":"+seconds;
+
+    if(time>0){
+      time--;
+    }
+  },1000);
+</script>
+
+</body>
+</html>
