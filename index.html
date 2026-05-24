@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Period Care Center 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:#6B3A5B;
+  background:#FFF0F5;
+  cursor:default;
+}
+
+/* ---- BACKGROUND ---- */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse at 15% 15%,rgba(255,182,193,.45) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 10%,rgba(200,162,200,.45) 0%,transparent 55%),
+    radial-gradient(ellipse at 50% 85%,rgba(255,218,185,.4) 0%,transparent 55%),
+    linear-gradient(135deg,#FFF0F5 0%,#F2E8FF 50%,#FFF5EE 100%);
+  z-index:-2;
+}
+
+/* Animated blobs */
+.blobs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.28;animation:blobFloat 9s ease-in-out infinite;}
+.blob-1{width:480px;height:480px;background:#FFB6C1;top:-120px;left:-120px;animation-delay:0s;}
+.blob-2{width:340px;height:340px;background:#C8A2C8;top:38%;right:-80px;animation-delay:-3.5s;}
+.blob-3{width:400px;height:400px;background:#FFDAB9;bottom:-100px;left:28%;animation-delay:-5.5s;}
+.blob-4{width:280px;height:280px;background:#FFAECB;bottom:22%;right:18%;animation-delay:-1.8s;}
+@keyframes blobFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(28px,-38px) scale(1.06);}
+  66%{transform:translate(-18px,22px) scale(.94);}
+}
+
+/* ---- FLOATING PARTICLES ---- */
+.float-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.flt{position:absolute;opacity:0;user-select:none;animation:floatUp linear infinite;}
+@keyframes floatUp{
+  0%{transform:translateY(110vh) rotate(0deg) scale(.7);opacity:0;}
+  8%{opacity:.9;}
+  88%{opacity:.9;}
+  100%{transform:translateY(-12vh) rotate(400deg) scale(1.1);opacity:0;}
+}
+
+/* ---- LAYOUT ---- */
+.section{padding:90px 20px;max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+
+/* ---- REVEAL ANIMATIONS ---- */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}.d6{transition-delay:.6s;}
+
+/* ---- TYPOGRAPHY HELPERS ---- */
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3.4rem);
+  text-align:center;margin-bottom:12px;
+  background:linear-gradient(135deg,#C84B8C,#8B4BC8,#FF7BAC);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gShift 4s ease-in-out infinite;
+}
+.sec-sub{text-align:center;font-size:1.08rem;color:#9B6B8B;margin-bottom:50px;line-height:1.6;}
+@keyframes gShift{0%,100%{background-position:0 50%;}50%{background-position:100% 50%;}}
+
+/* ---- GLASS CARD BASE ---- */
+.glass{
+  background:rgba(255,255,255,.45);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:24px;
+  box-shadow:0 8px 34px rgba(200,75,140,.11),0 2px 8px rgba(0,0,0,.04);
+}
+
+/* ---- PULSE ANIMATION ---- */
+@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,75,140,.3);}50%{transform:scale(1.02);box-shadow:0 0 0 9px rgba(200,75,140,0);}}
+
+/* ===========================
+   HERO
+   =========================== */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;}
+.hero-badge{
+  display:inline-block;
+  background:rgba(255,182,193,.38);
+  border:1px solid rgba(255,150,180,.5);
+  border-radius:50px;padding:8px 26px;
+  font-size:.9rem;color:#C84B8C;font-weight:700;
+  margin-bottom:24px;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,8.5vw,6.2rem);
+  font-weight:700;line-height:1.08;
+  background:linear-gradient(135deg,#C84B8C 0%,#8B4BC8 50%,#FF7BAC 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:gShift 3s ease-in-out infinite;
+  margin-bottom:22px;
+}
+.hero-sub{font-size:clamp(.95rem,2.2vw,1.25rem);color:#9B6B8B;max-width:580px;line-height:1.75;margin:0 auto 44px;}
+.hero-btn{
+  display:inline-block;padding:17px 44px;
+  background:linear-gradient(135deg,#FF85B3,#C84B8C);
+  color:#fff;border:none;border-radius:50px;
+  font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:800;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+  box-shadow:0 8px 32px rgba(200,75,140,.4);
+}
+.hero-btn::after{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transition:left .55s;
+}
+.hero-btn:hover::after{left:100%;}
+.hero-btn:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 14px 42px rgba(200,75,140,.5);}
+.hero-btn:active{transform:scale(.97);}
+.hug-count{margin-top:18px;font-size:1.18rem;color:#C84B8C;font-weight:800;min-height:28px;transition:all .3s;}
+
+/* ===========================
+   MOOD METER
+   =========================== */
+.mood-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:28px;}
+.mood-btn{
+  padding:13px 22px;border:2px solid rgba(200,75,140,.28);border-radius:50px;
+  background:rgba(255,255,255,.5);color:#8B4B7B;
+  font-family:'Nunito',sans-serif;font-size:.98rem;font-weight:700;
+  cursor:pointer;transition:all .3s;backdrop-filter:blur(10px);
+}
+.mood-btn:hover{background:rgba(200,75,140,.13);border-color:#C84B8C;transform:translateY(-3px) scale(1.06);}
+.mood-btn.active{background:linear-gradient(135deg,#FFB6C1,#FF85B3);border-color:#C84B8C;color:#fff;transform:scale(1.07);}
+.mood-resp{
+  padding:26px 32px;border-radius:22px;text-align:center;
+  font-size:1.08rem;line-height:1.75;color:#6B3A5B;
+  opacity:0;transform:translateY(10px);transition:all .4s ease;
+  background:rgba(255,255,255,.5);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 8px 32px rgba(200,75,140,.1);min-height:90px;
+}
+.mood-resp.show{opacity:1;transform:translateY(0);}
+
+/* ===========================
+   SURVIVAL KIT
+   =========================== */
+.kit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:22px;}
+.kit-card{
+  padding:32px 26px;border-radius:24px;
+  background:rgba(255,255,255,.45);backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 8px 32px rgba(200,75,140,.1);
+  text-align:center;cursor:default;
+  transition:all .4s cubic-bezier(.175,.885,.32,1.275);
+  position:relative;overflow:hidden;
+}
+.kit-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,182,193,.22));
+  opacity:0;transition:opacity .3s;
+}
+.kit-card:hover::before{opacity:1;}
+.kit-card:hover{
+  transform:perspective(800px) translateY(-14px) rotateX(6deg) scale(1.02);
+  box-shadow:0 24px 55px rgba(200,75,140,.22);
+}
+.kit-emoji{font-size:3rem;margin-bottom:14px;display:block;transition:transform .3s;}
+.kit-card:hover .kit-emoji{animation:wiggle .5s ease-in-out;}
+@keyframes wiggle{0%,100%{transform:rotate(0) scale(1);}25%{transform:rotate(-12deg) scale(1.25);}75%{transform:rotate(12deg) scale(1.25);}}
+.kit-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:#C84B8C;margin-bottom:8px;}
+.kit-desc{font-size:.93rem;color:#9B6B8B;line-height:1.65;}
+
+/* ===========================
+   LOVE ABOUT YOU
+   =========================== */
+.love-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:20px;}
+.love-card{
+  padding:32px 24px;border-radius:22px;
+  background:rgba(255,255,255,.45);backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 8px 32px rgba(200,75,140,.1);
+  position:relative;overflow:hidden;
+  transition:all .4s ease;cursor:default;
+}
+.love-card::after{
+  content:'💗';position:absolute;top:-18px;right:-8px;
+  font-size:5.5rem;opacity:.07;transition:all .35s;pointer-events:none;
+}
+.love-card:hover::after{opacity:.17;transform:scale(1.2) rotate(12deg);}
+.love-card:hover{
+  transform:perspective(800px) translateY(-9px) rotateY(4deg) scale(1.02);
+  box-shadow:0 22px 52px rgba(200,75,140,.2);
+}
+.love-num{font-size:2.6rem;font-weight:900;color:rgba(200,75,140,.13);font-family:'Playfair Display',serif;line-height:1;margin-bottom:8px;}
+.love-text{font-size:1.03rem;color:#6B3A5B;line-height:1.65;font-style:italic;}
+
+/* ===========================
+   MINI GAME
+   =========================== */
+.game-wrap{text-align:center;}
+.game-stats{display:flex;justify-content:center;gap:26px;margin-bottom:18px;flex-wrap:wrap;}
+.stat-box{padding:12px 22px;border-radius:16px;background:rgba(255,255,255,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.72);}
+.stat-lbl{font-size:.78rem;color:#9B6B8B;letter-spacing:.5px;text-transform:uppercase;}
+.stat-val{font-size:1.55rem;font-weight:800;color:#C84B8C;}
+.happy-bar{height:14px;background:rgba(255,182,193,.3);border-radius:50px;margin:0 auto 22px;max-width:420px;overflow:hidden;}
+.happy-fill{
+  height:100%;border-radius:50px;width:0%;
+  background:linear-gradient(90deg,#FF85B3,#C84B8C,#FFB6C1);
+  background-size:200% auto;transition:width .35s ease;
+  animation:gShift 2.5s linear infinite;
+}
+#gameCanvas{
+  border-radius:22px;background:rgba(255,255,255,.32);
+  backdrop-filter:blur(12px);border:2px solid rgba(255,182,193,.45);
+  cursor:crosshair;display:block;margin:0 auto;
+  box-shadow:0 8px 32px rgba(200,75,140,.14);
+  max-width:100%;
+}
+.game-btn{
+  padding:12px 30px;
+  background:linear-gradient(135deg,#FF85B3,#C84B8C);
+  color:#fff;border:none;border-radius:50px;
+  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;
+  cursor:pointer;margin:14px 6px 0;transition:all .3s;
+  box-shadow:0 4px 16px rgba(200,75,140,.3);
+}
+.game-btn:hover{transform:translateY(-3px);box-shadow:0 9px 28px rgba(200,75,140,.42);}
+
+/* ===========================
+   PLAYLIST
+   =========================== */
+.playlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.song-card{
+  padding:14px 18px;border-radius:18px;
+  background:rgba(255,255,255,.45);backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.72);
+  display:flex;align-items:center;gap:14px;
+  transition:all .3s;cursor:pointer;
+}
+.song-card:hover{transform:translateX(6px);box-shadow:0 8px 26px rgba(200,75,140,.14);background:rgba(255,182,193,.18);}
+.s-cover{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.s-name{font-weight:800;color:#6B3A5B;font-size:.93rem;}
+.s-art{font-size:.82rem;color:#9B6B8B;}
+.s-vibe{font-size:.68rem;padding:4px 10px;background:rgba(200,75,140,.1);color:#C84B8C;border-radius:50px;white-space:nowrap;}
+.np-card{text-align:center;padding:20px;border-radius:22px;background:rgba(255,255,255,.45);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.72);margin-bottom:22px;max-width:480px;margin-left:auto;margin-right:auto;}
+.np-lbl{font-size:.78rem;color:#9B6B8B;margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase;}
+.np-title{font-weight:800;color:#6B3A5B;margin-bottom:10px;font-size:.95rem;}
+.np-bars{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:20px;}
+.np-bar{width:4px;border-radius:2px;background:linear-gradient(to top,#FF85B3,#C84B8C);animation:eq 1s ease-in-out infinite;}
+@keyframes eq{0%,100%{height:4px;}50%{height:20px;}}
+.np-bar:nth-child(1){animation-delay:0s;}
+.np-bar:nth-child(2){animation-delay:.18s;}
+.np-bar:nth-child(3){animation-delay:.09s;}
+.np-bar:nth-child(4){animation-delay:.27s;}
+.np-bar:nth-child(5){animation-delay:.14s;}
+.np-bar:nth-child(6){animation-delay:.22s;}
+.np-bar:nth-child(7){animation-delay:.05s;}
+
+/* ===========================
+   COUNTDOWN
+   =========================== */
+.cd-wrap{text-align:center;}
+.cd-display{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;}
+.time-box{
+  padding:20px 26px;border-radius:20px;
+  background:rgba(255,255,255,.45);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 8px 32px rgba(200,75,140,.1);min-width:90px;text-align:center;
+}
+.time-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:#C84B8C;line-height:1;margin-bottom:4px;}
+.time-lbl{font-size:.7rem;color:#9B6B8B;text-transform:uppercase;letter-spacing:1px;}
+.time-sep{font-size:2.4rem;color:#C84B8C;opacity:.4;font-weight:900;}
+
+/* ===========================
+   LOVE LETTER
+   =========================== */
+#letter{text-align:center;}
+.letter-card{
+  max-width:700px;margin:0 auto;padding:54px 44px;
+  border-radius:30px;
+  background:rgba(255,255,255,.52);backdrop-filter:blur(28px);
+  border:1px solid rgba(255,255,255,.82);
+  box-shadow:0 22px 64px rgba(200,75,140,.22);
+  position:relative;overflow:hidden;
+}
+.letter-card::before{
+  content:'💌';position:absolute;top:-24px;left:50%;transform:translateX(-50%);
+  font-size:4rem;animation:bounce 2.2s ease-in-out infinite;
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-12px);}}
+.letter-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,182,193,.2),transparent 60%);
+  pointer-events:none;
+}
+.letter-body{font-size:1.08rem;line-height:1.92;color:#6B3A5B;padding-top:24px;}
+.letter-sig{margin-top:28px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:#C84B8C;}
+
+/* ===========================
+   TOAST & CURSOR SPARK
+   =========================== */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(110px);
+  background:linear-gradient(135deg,#FF85B3,#C84B8C);
+  color:#fff;padding:14px 30px;border-radius:50px;
+  font-size:.98rem;font-weight:700;z-index:1000;
+  transition:transform .45s cubic-bezier(.175,.885,.32,1.275);
+  pointer-events:none;box-shadow:0 6px 24px rgba(200,75,140,.35);
+  white-space:nowrap;
+}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.cspark{
+  position:fixed;pointer-events:none;z-index:9999;
+  animation:sparkFade .85s forwards;
+}
+@keyframes sparkFade{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-120%) scale(.2);}}
+
+/* ===========================
+   SCROLLBAR
+   =========================== */
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-track{background:#FFF0F5;}
+::-webkit-scrollbar-thumb{background:linear-gradient(#FF85B3,#C84B8C);border-radius:4px;}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media(max-width:640px){
+  .section{padding:60px 16px;}
+  .kit-grid{grid-template-columns:1fr 1fr;}
+  .love-grid{grid-template-columns:1fr 1fr;}
+  .playlist-grid{grid-template-columns:1fr;}
+  .letter-card{padding:40px 22px;}
+  .time-num{font-size:2rem;}
+  .time-box{padding:14px 18px;min-width:72px;}
+}
+@media(max-width:400px){
+  .kit-grid,.love-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND BLOBS -->
+<div class="blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<!-- FLOATING HEARTS -->
+<div class="float-wrap" id="floatWrap"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- =================== HERO =================== -->
+<section id="hero">
+  <div class="hero-badge">🚨 ACTIVE EMERGENCY 🚨</div>
+  <h1 class="hero-title">Emergency Period<br>Care Center 💗</h1>
+  <p class="hero-sub">
+    Side effects may include: mood swings, stealing hoodies,<br>
+    demanding snacks, and looking absolutely gorgeous while doing all of the above ✨
+  </p>
+  <button class="hero-btn" onclick="sendHug()">Send Unlimited Hugs 🤗</button>
+  <div class="hug-count" id="hugCount"></div>
+</section>
+
+<!-- =================== MOOD METER =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Current Vibe Check 🌡️</h2>
+  <p class="sec-sub reveal d1">How are we feeling rn? (Be honest, I can handle it, maybe)</p>
+  <div class="mood-grid reveal d2">
+    <button class="mood-btn" onclick="setMood(this,'angry')">Angry 😤</button>
+    <button class="mood-btn" onclick="setMood(this,'cry')">Crying 😭</button>
+    <button class="mood-btn" onclick="setMood(this,'choco')">Needs Chocolate 🍫</button>
+    <button class="mood-btn" onclick="setMood(this,'attn')">Wants Attention 🥺</button>
+    <button class="mood-btn" onclick="setMood(this,'fight')">Will Fight Anyone ⚔️</button>
+    <button class="mood-btn" onclick="setMood(this,'sleepy')">Just Sleepy 😴</button>
+  </div>
+  <div class="mood-resp" id="moodResp"></div>
+</section>
+
+<!-- =================== SURVIVAL KIT =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Your Survival Kit 🎒</h2>
+  <p class="sec-sub reveal d1">Hand-curated with love, questionable humor, and good intentions</p>
+  <div class="kit-grid">
+    <div class="kit-card reveal d1">
+      <span class="kit-emoji">🍫</span>
+      <div class="kit-title">Premium Chocolate</div>
+      <div class="kit-desc">Dark, milk, white — all varieties stocked. Science says it helps. I also say it helps. Double peer-reviewed.</div>
+    </div>
+    <div class="kit-card reveal d2">
+      <span class="kit-emoji">🔥</span>
+      <div class="kit-title">Heating Pad</div>
+      <div class="kit-desc">Warm, cozy, and infinitely better than any cramp. Your tummy deserves the warmth energy rn.</div>
+    </div>
+    <div class="kit-card reveal d3">
+      <span class="kit-emoji">🍦</span>
+      <div class="kit-title">Ice Cream</div>
+      <div class="kit-desc">Double scoop. No judgment zone. Every flavor is valid. The freezer is your personal pharmacy.</div>
+    </div>
+    <div class="kit-card reveal d4">
+      <span class="kit-emoji">🤗</span>
+      <div class="kit-title">Cuddles On Demand</div>
+      <div class="kit-desc">Premium quality. Unlimited supply. Side hug, bear hug, couch hug — you pick, I deliver.</div>
+    </div>
+    <div class="kit-card reveal d5">
+      <span class="kit-emoji">😂</span>
+      <div class="kit-title">Certified Memes</div>
+      <div class="kit-desc">Curated for bad days. Laughing is free, legal, and I have literally 400+ saved for emergencies.</div>
+    </div>
+    <div class="kit-card reveal d6">
+      <span class="kit-emoji">💝</span>
+      <div class="kit-title">Extra Love</div>
+      <div class="kit-desc">Infinite stock. Never expires. Never runs out. Available 24/7 from one extremely devoted individual.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== THINGS I LOVE =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Things I Love About You 💌</h2>
+  <p class="sec-sub reveal d1">A non-exhaustive list — the full version needs its own cloud server</p>
+  <div class="love-grid">
+    <div class="love-card reveal d1">
+      <div class="love-num">01</div>
+      <div class="love-text">"Even your angry texts are cute. The capslock just adds personality, honestly."</div>
+    </div>
+    <div class="love-card reveal d2">
+      <div class="love-num">02</div>
+      <div class="love-text">"You deserve the world, unlimited snacks, and someone who Googles your cravings at 2am. Hi, that's me."</div>
+    </div>
+    <div class="love-card reveal d3">
+      <div class="love-num">03</div>
+      <div class="love-text">"You are genuinely stronger than your cramps. And cramps are no joke, so like… you're literally a superhero."</div>
+    </div>
+    <div class="love-card reveal d4">
+      <div class="love-num">04</div>
+      <div class="love-text">"I'd still choose you during mood swings. Especially during mood swings, actually. That's when you need me most."</div>
+    </div>
+    <div class="love-card reveal d5">
+      <div class="love-num">05</div>
+      <div class="love-text">"Your laugh is my favorite sound in the entire world. I would pay to hear it on repeat."</div>
+    </div>
+    <div class="love-card reveal d6">
+      <div class="love-num">06</div>
+      <div class="love-text">"You're the reason I always have snacks stocked. Best thing I ever learned to do for love."</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== MINI GAME =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Happiness Booster 🎮</h2>
+  <p class="sec-sub reveal d1">Tap the falling chocolates & hearts to fill up your happiness meter!</p>
+  <div class="game-wrap">
+    <div class="game-stats">
+      <div class="stat-box reveal d1"><div class="stat-lbl">Score</div><div class="stat-val" id="gScore">0</div></div>
+      <div class="stat-box reveal d2"><div class="stat-lbl">Caught</div><div class="stat-val" id="gCaught">0</div></div>
+      <div class="stat-box reveal d3"><div class="stat-lbl">Happiness</div><div class="stat-val" id="gHappy">0%</div></div>
+    </div>
+    <div class="happy-bar reveal"><div class="happy-fill" id="happyFill"></div></div>
+    <canvas id="gameCanvas" width="500" height="380"></canvas>
+    <div>
+      <button class="game-btn" onclick="startGame()">▶ Start Game</button>
+      <button class="game-btn" onclick="resetGame()">↺ Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PLAYLIST =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Comfort Playlist 🎵</h2>
+  <p class="sec-sub reveal d1">Songs that feel like a warm hoodie and a glass of warm milk</p>
+  <div class="np-card reveal d1">
+    <div class="np-lbl">♪ Now Playing</div>
+    <div class="np-title" id="npTitle">Adore You — Harry Styles</div>
+    <div class="np-bars">
+      <div class="np-bar" style="height:12px"></div>
+      <div class="np-bar" style="height:20px"></div>
+      <div class="np-bar" style="height:8px"></div>
+      <div class="np-bar" style="height:18px"></div>
+      <div class="np-bar" style="height:14px"></div>
+      <div class="np-bar" style="height:20px"></div>
+      <div class="np-bar" style="height:10px"></div>
+    </div>
+  </div>
+  <div class="playlist-grid">
+    <div class="song-card reveal d1" onclick="playThis('Adore You — Harry Styles')">
+      <div class="s-cover" style="background:rgba(255,182,193,.3)">🌙</div>
+      <div style="flex:1"><div class="s-name">Adore You</div><div class="s-art">Harry Styles</div></div>
+      <span class="s-vibe">soft 💗</span>
+    </div>
+    <div class="song-card reveal d2" onclick="playThis('Die For You — The Weeknd')">
+      <div class="s-cover" style="background:rgba(200,162,200,.3)">✨</div>
+      <div style="flex:1"><div class="s-name">Die For You</div><div class="s-art">The Weeknd</div></div>
+      <span class="s-vibe">deep 💜</span>
+    </div>
+    <div class="song-card reveal d3" onclick="playThis('Golden — Harry Styles')">
+      <div class="s-cover" style="background:rgba(255,218,185,.4)">☀️</div>
+      <div style="flex:1"><div class="s-name">Golden</div><div class="s-art">Harry Styles</div></div>
+      <span class="s-vibe">warm 🌤</span>
+    </div>
+    <div class="song-card reveal d4" onclick="playThis('Lavender Haze — Taylor Swift')">
+      <div class="s-cover" style="background:rgba(230,230,250,.5)">💜</div>
+      <div style="flex:1"><div class="s-name">Lavender Haze</div><div class="s-art">Taylor Swift</div></div>
+      <span class="s-vibe">vibes ✨</span>
+    </div>
+    <div class="song-card reveal d5" onclick="playThis('Glimpse of Us — Joji')">
+      <div class="s-cover" style="background:rgba(255,182,193,.25)">🌸</div>
+      <div style="flex:1"><div class="s-name">Glimpse of Us</div><div class="s-art">Joji</div></div>
+      <span class="s-vibe">cry mode 😭</span>
+    </div>
+    <div class="song-card reveal d6" onclick="playThis('lovely — Billie Eilish')">
+      <div class="s-cover" style="background:rgba(200,162,200,.25)">🌙</div>
+      <div style="flex:1"><div class="s-name">lovely</div><div class="s-art">Billie Eilish</div></div>
+      <span class="s-vibe">cozy 🫶</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== COUNTDOWN =================== -->
+<section class="section">
+  <h2 class="sec-title reveal">Next Snack Drop ETA ⏰</h2>
+  <p class="sec-sub reveal d1">Your next snack request will be fulfilled in exactly...</p>
+  <div class="cd-wrap reveal d2">
+    <div class="cd-display">
+      <div class="time-box"><div class="time-num" id="cdH">00</div><div class="time-lbl">Hours</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-box"><div class="time-num" id="cdM">12</div><div class="time-lbl">Minutes</div></div>
+      <div class="time-sep">:</div>
+      <div class="time-box"><div class="time-num" id="cdS">45</div><div class="time-lbl">Seconds</div></div>
+    </div>
+    <p style="margin-top:22px;color:#9B6B8B;font-size:.95rem;">
+      (Or just text me. Timer resets instantly. Unlimited snack requests accepted 24/7 🍪)
+    </p>
+  </div>
+</section>
+
+<!-- =================== LOVE LETTER =================== -->
+<section class="section" id="letter" style="padding-bottom:120px">
+  <h2 class="sec-title reveal">A Letter, For You 💌</h2>
+  <p class="sec-sub reveal d1">From the bottom of my slightly dramatic heart</p>
+  <div class="letter-card reveal d2">
+    <p class="letter-body">
+      I know periods can be exhausting and painful sometimes — like your body decided to run a 
+      full drama arc every month without asking you first. But I just want you to know I'm 
+      always here for you. For the cramps, the mood swings, the random cravings at midnight, 
+      the need for silence, the need for noise, and everything in between. 🌙
+      <br><br>
+      You deserve comfort, rest, love, and all the chocolates in the world. 
+      That last one is non-negotiable. I will go to the store at whatever time you ask. 
+      I already know where they keep the good ones. 🍫
+      <br><br>
+      You're the strongest, most beautiful, funniest, most wonderful person I know — 
+      and that is a completely objective, scientifically verified, peer-reviewed fact 
+      that I will defend with my whole chest.
+      <br><br>
+      No matter what day it is, what mood you're in, or how many hoodies you've stolen 
+      (all of them — it's always all of them, and I love it) — you're still my favorite 
+      person on this entire planet. Always will be. 💗
+    </p>
+    <div class="letter-sig">— Made with too much love and not enough sleep, just for you 💕</div>
+  </div>
+</section>
+
+<script>
+// ===== FLOATING HEARTS =====
+const floatEmojis=['💗','💕','✨','💫','🌸','💝','⭐','🌷','💖','🍭'];
+const fw=document.getElementById('floatWrap');
+function mkFloat(){
+  const el=document.createElement('span');
+  el.className='flt';
+  el.textContent=floatEmojis[Math.floor(Math.random()*floatEmojis.length)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(.75+Math.random()*1.1)+'rem';
+  const dur=9+Math.random()*14;
+  el.style.animationDuration=dur+'s';
+  el.style.animationDelay=(Math.random()*dur)+'s';
+  fw.appendChild(el);
+  setTimeout(()=>el.remove(),(dur+6)*1000);
+}
+for(let i=0;i<18;i++)setTimeout(mkFloat,Math.random()*4000);
+setInterval(mkFloat,1100);
+
+// ===== CURSOR SPARKLES =====
+document.addEventListener('click',e=>{
+  const s=['✨','💗','⭐','💕','🌸','💫'];
+  for(let i=0;i<4;i++){
+    const sp=document.createElement('div');
+    sp.className='cspark';
+    sp.textContent=s[Math.floor(Math.random()*s.length)];
+    sp.style.cssText=`left:${e.clientX+(Math.random()-.5)*50}px;top:${e.clientY+(Math.random()-.5)*50}px;font-size:${.75+Math.random()*.7}rem;`;
+    document.body.appendChild(sp);
+    setTimeout(()=>sp.remove(),900);
+  }
+});
+
+// ===== TOAST =====
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// ===== HUG BUTTON =====
+let hugs=0;
+function sendHug(){
+  hugs++;
+  document.getElementById('hugCount').textContent=`🤗 ${hugs} hug${hugs>1?'s':''} delivered with love! 💗`;
+  showToast(`💗 Hug #${hugs} sent successfully!`);
+  for(let i=0;i<8;i++){
+    setTimeout(()=>{
+      const sp=document.createElement('div');
+      sp.className='cspark';
+      sp.textContent=['💗','💕','💖','💝','✨','🌸'][Math.floor(Math.random()*6)];
+      sp.style.cssText=`left:${100+Math.random()*(window.innerWidth-200)}px;top:${window.innerHeight*.45}px;font-size:1.6rem;`;
+      document.body.appendChild(sp);setTimeout(()=>sp.remove(),900);
+    },i*70);
+  }
+}
+
+// ===== MOOD METER =====
+const moods={
+  angry:[
+    '😤 Totally valid. The world is genuinely lucky you\'re channeling it into vibes and not actual destruction. You\'re scary powerful and honestly kind of iconic when you\'re mad.',
+    '⚡ Your anger is justified, powerful, and honestly impressive. Here\'s a chocolate and a hug — please don\'t fight anyone today, your nails are too good for that.'
+  ],
+  cry:[
+    '😭 It\'s okay to cry, bestie. Let it all out. I\'m right here with tissues, snacks, and zero judgment whatsoever. You\'re allowed to feel everything, all of it.',
+    '💧 Crying is just your body saying "I\'m doing a lot and feeling even more." You\'re not broken — you\'re human. And you\'re gorgeous even crying, just so you know.'
+  ],
+  choco:[
+    '🍫 SAY NO MORE. Chocolate is being summoned RIGHT NOW. Dark or milk? Actually both. We don\'t negotiate during medical emergencies. Doctor\'s orders.',
+    '🍫 The chocolate has been officially authorized. Consider it a prescription. I take full medical responsibility.'
+  ],
+  attn:[
+    '🥺 Come here. Right now. Attention: fully granted. Phone: on silent for you. Cuddles: available. My focus is 100% yours. You have the floor, your highness. 👑',
+    '💗 Oh you want attention? Here is literally all of mine. Every single bit. You are the center of my universe rn and I don\'t take that back.'
+  ],
+  fight:[
+    '⚔️ Name them. I\'m kidding. Mostly. But deep breath — you\'re too powerful to waste your energy on people who aren\'t even worth your bad day.',
+    '😤 Understood completely. The urge is valid. However, your manicure is too iconic to risk it. Let\'s redirect this energy into snacks and revenge glow-up plans.'
+  ],
+  sleepy:[
+    '😴 Sleep is THE answer. Close your eyes. I\'ll handle the rest. There is nothing on this earth that can\'t wait until you\'ve rested. You deserve all the sleep in the world.',
+    '💤 Nap permission: GRANTED. The world will still be there. Your comfort cannot wait. Sweet dreams, my love. I\'ll be here when you wake up. 🌙'
+  ]
+};
+function setMood(btn,key){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const arr=moods[key];
+  const resp=arr[Math.floor(Math.random()*arr.length)];
+  const box=document.getElementById('moodResp');
+  box.classList.remove('show');
+  setTimeout(()=>{box.innerHTML=resp;box.classList.add('show');},200);
+}
+
+// ===== MINI GAME =====
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+let gRunning=false,gLoop=null;
+let gScore=0,gCaught=0,gHappy=0;
+let items=[],particles=[];
+const EMOJIS=['🍫','💗','🍭','⭐','🌸','💝','🍬','💕','🍡','🎀'];
+const PCOLS=['#FFB6C1','#FF85B3','#C8A2C8','#FFDAB9','#FFD700','#FFA2C0'];
+
+// Responsive canvas
+function resizeCanvas(){
+  const w=Math.min(500,window.innerWidth-40);
+  canvas.style.width=w+'px';
+}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+
+function spawn(){
+  items.push({
+    x:28+Math.random()*(canvas.width-56),
+    y:-28,
+    emoji:EMOJIS[Math.floor(Math.random()*EMOJIS.length)],
+    speed:1.6+Math.random()*2.8,
+    size:22+Math.random()*14,
+    rot:0,
+    rs:(Math.random()-.5)*.1
+  });
+}
+function burst(x,y){
+  for(let i=0;i<10;i++){
+    particles.push({
+      x,y,
+      vx:(Math.random()-.5)*7,
+      vy:(Math.random()-1.1)*5.5,
+      life:1,
+      dec:.038+Math.random()*.04,
+      r:2.5+Math.random()*5,
+      color:PCOLS[Math.floor(Math.random()*PCOLS.length)]
+    });
+  }
+}
+function drawFrame(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='rgba(255,240,245,.22)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  items.forEach(it=>{
+    ctx.save();
+    ctx.translate(it.x,it.y);ctx.rotate(it.rot);
+    ctx.font=it.size+'px serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(it.emoji,0,0);
+    ctx.restore();
+    it.y+=it.speed;it.rot+=it.rs;
+  });
+  particles.forEach(p=>{
+    ctx.save();ctx.globalAlpha=Math.max(0,p.life);
+    ctx.fillStyle=p.color;ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    p.x+=p.vx;p.y+=p.vy;p.vy+=.18;p.life-=p.dec;
+  });
+  particles=particles.filter(p=>p.life>0);
+  items=items.filter(it=>it.y<canvas.height+40);
+}
+function step(){
+  drawFrame();
+  if(Math.random()<.026)spawn();
+}
+function updateUI(){
+  document.getElementById('gScore').textContent=gScore;
+  document.getElementById('gCaught').textContent=gCaught;
+  document.getElementById('gHappy').textContent=Math.min(100,gHappy)+'%';
+  document.getElementById('happyFill').style.width=Math.min(100,gHappy)+'%';
+}
+function startGame(){
+  if(gRunning)return;
+  gRunning=true;gScore=0;gCaught=0;gHappy=0;items=[];particles=[];
+  updateUI();gLoop=setInterval(step,16);
+  showToast('🎮 Catch those chocolates! 🍫');
+}
+function resetGame(){
+  clearInterval(gLoop);gRunning=false;
+  gScore=0;gCaught=0;gHappy=0;items=[];particles=[];
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  updateUI();drawIdle();
+}
+function drawIdle(){
+  ctx.fillStyle='rgba(255,240,245,.5)';ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.textAlign='center';
+  ctx.font='22px Nunito,sans-serif';ctx.fillStyle='rgba(200,75,140,.55)';
+  ctx.fillText('Press ▶ Start Game to play! 🎮',canvas.width/2,canvas.height/2-14);
+  ctx.font='15px Nunito,sans-serif';ctx.fillStyle='rgba(155,107,139,.65)';
+  ctx.fillText('Click the falling chocolates & hearts 💗',canvas.width/2,canvas.height/2+18);
+}
+drawIdle();
+
+function handleHit(mx,my){
+  if(!gRunning)return;
+  let hit=false;
+  items=items.filter(it=>{
+    const d=Math.hypot(mx-it.x,my-it.y);
+    if(d<it.size+4&&!hit){
+      hit=true;gScore+=10;gCaught++;gHappy=Math.min(100,gHappy+4);
+      burst(it.x,it.y);updateUI();
+      if(gHappy>=100)showToast('🎉 100% Happiness! You\'re literally glowing! 💗');
+      return false;
+    }
+    return true;
+  });
+}
+canvas.addEventListener('click',e=>{
+  const r=canvas.getBoundingClientRect();
+  handleHit((e.clientX-r.left)*(canvas.width/r.width),(e.clientY-r.top)*(canvas.height/r.height));
+});
+canvas.addEventListener('touchstart',e=>{
+  e.preventDefault();
+  const r=canvas.getBoundingClientRect(),t=e.touches[0];
+  handleHit((t.clientX-r.left)*(canvas.width/r.width),(t.clientY-r.top)*(canvas.height/r.height));
+},{passive:false});
+
+// ===== PLAYLIST =====
+function playThis(t){
+  document.getElementById('npTitle').textContent=t;
+  showToast('♪ Now Playing: '+t);
+}
+
+// ===== COUNTDOWN =====
+let cdSecs=12*60+45;
+setInterval(()=>{
+  cdSecs--;
+  if(cdSecs<=0){cdSecs=15*60;showToast('🍪 Snack time! Order placed! 🛵');}
+  const h=Math.floor(cdSecs/3600);
+  const m=Math.floor((cdSecs%3600)/60);
+  const s=cdSecs%60;
+  document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+},1000);
+
+// ===== SCROLL REVEAL =====
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
